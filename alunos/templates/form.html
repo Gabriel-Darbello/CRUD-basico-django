@@ -11,9 +11,9 @@
         <br><br>
         <form action="{% url 'criar_aluno' %}" method="POST"> {% csrf_token %}
             <h1>Criar Aluno</h1>
-            <input type="text" name="nome" class="form-control" placeholder="digite o nome do aluno">
+            <input type="text" name="nome" class="form-control" placeholder="digite o nome do aluno" required>
             <br>
-            <input type="email" name="email" class="form-control" placeholder="digite o email do aluno">
+            <input type="email" name="email" class="form-control" placeholder="digite o email do aluno" required>
             <br>
             <input type="submit" name="enviar" value="cadastrar aluno" class="btn btn-sucess" id="enviar" style="background-color: #292929; color: #ffffff;">
         </form>
