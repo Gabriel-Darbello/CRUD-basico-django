@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>criar alunos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+        <br><br>
+        <form action="{% url 'criar_aluno' %}" method="POST"> {% csrf_token %}
+            <h1>Criar Aluno</h1>
+            <input type="text" name="nome" class="form-control" placeholder="digite o nome do aluno">
+            <br>
+            <input type="email" name="email" class="form-control" placeholder="digite o email do aluno">
+            <br>
+            <input type="submit" name="enviar" value="cadastrar aluno" class="btn btn-sucess" id="enviar" style="background-color: #292929; color: #ffffff;">
+        </form>
+    </div>
+
+    <hr>
+
+<table class="table">
+
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Deletar</th>
+      <th scope="col">Atualizar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    {%for i in alunos%}
+        <tr>
+            <form action="{% url 'atualizar_aluno' i.id%}" method="POST"> {% csrf_token %}
+                <td><input type="text" name="nome" value="{{i.nome}}" class="form-control"></td>
+                <td><input type="text" name="email" value="{{i.email}}" class="form-control"></td>
+                <td> <input type="submit" class="btn btn-primary" value="Atualizar"> </td>
+            </form>
+
+            <td> <a href="{% url 'deletar_aluno' i.id %}" class="btn btn-danger">Deletar</a></td>
+        </tr>
+    {% endfor %}
+    <tr>
+  </tbody>
+</table>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>
